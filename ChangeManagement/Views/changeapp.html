@@ -1,0 +1,2183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <title>Service Manager</title>
+    <meta charset="utf-8" content="IE=11" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../css/bootstrap-theme.css" />
+    <link rel="Stylesheet" href="../css/jquery.datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css" />
+    <link rel="Stylesheet" type="text/css" href="../css/bootstrap-multiselect.css" />
+    <link rel="Stylesheet" type="text/css" href="../css/changeapp.css" />
+</head>
+<body>
+    <!--main container-->
+    <div id="loading" class="container-fluid ">
+        <!--Modals need to be the top level elements -->
+        <!--task modal -->
+        <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog" style="overflow-y: scroll; max-height: 85%; margin-top: 50px;
+                margin-bottom: 50px;">
+                <div class="modal-content ">
+                    <div class="modal-body ">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            <!-- Change Task-->
+                            <h3 id="myModalLabel">
+                                &nbsp;</h3>
+                            <button type="button" class="close btn btn-primary" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <!---split modal into two sections -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="form-group  col-sm-6">
+                                            <label for="tasktype" class="control-label">
+                                                *Type:</label>
+                                            <select class="form-control" id="tasktype">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-6 ">
+                                            <label for="extChangeTaskId" class="control-label">
+                                                Task Id:</label>
+                                            <input type="text" id="extChangeTaskId" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group  col-sm-12">
+                                            <label for="longdesc" id="lblTitle" class="control-label">
+                                                *Title:</label>
+                                            <input type="text" id="longdesc" class="form-control validate[required]" placeholder="Enter Description" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="taskassignedto" class="control-label">
+                                                Assigned To:</label>
+                                            <select class="form-control" id="taskassignedto">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-6 ">
+                                            <label for="taskStatus" class="control-label">
+                                                Status:</label>
+                                            <select class="form-control" id="taskStatus">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group  col-sm-6">
+                                            <label for="taskcrdate" class="control-label ">
+                                                Created Date:&nbsp;</label>
+                                            <input type="text" id="taskcrdate" class="form-control col-sm-1 " disabled />
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="taskcrby" class="control-label ">
+                                                Created By:&nbsp;</label>
+                                            <input type="text" id="taskcrby" class="form-control col-sm-1 " disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="lasteditdate" class="control-label">
+                                                Last Edit Date:</label>
+                                            <input type="text" id="lasteditdate" class="form-control col-sm-1" disabled />
+                                        </div>
+                                        <div class="form-group  col-sm-6">
+                                            <label for="lasteditby" class="control-label ">
+                                                Last Edit By:&nbsp;</label>
+                                            <input type="text" id="lasteditby" class="form-control col-sm-1 " disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="task_startdate" class="control-label">
+                                                Start Date:</label>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <input type="text" id="task_startdate" class="form-control" />
+                                                <span id="task_startdate_Cal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-6 ">
+                                            <label for="duedate" class="control-label">
+                                                Due Date:</label>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <input type="text" id="duedate" class="form-control" />
+                                                <span id="duedateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="completeddate" class="control-label">
+                                                Completed Date:</label>
+                                            <input type="text" id="completeddate" class="form-control col-sm-1" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 ">
+                                            <label for="tasknotes" class="control-label">
+                                                Comments:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <button id="btnAddTaskComment" class="btn btn-primary" style="margin-bottom: 15px;
+                                            margin-left: 15px">
+                                            Add Comment</button>
+                                        <!-- <div class="col-sm-12 ">
+                                            <textarea id="tasknotes" class="col-sm-12 col-xs-12" rows="5" cols="" style="margin-bottom: 15px"></textarea>
+                                        </div>-->
+                                        <div class="col-sm-1" hidden>
+                                            <input type="text" id="changeTaskId" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div id="divDevFields" class="col-sm-12" hidden>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="devType" class="control-label">
+                                                        Development Type:</label>
+                                                    <select class="form-control" id="devType">
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="devStage" class="control-label">
+                                                        Stage:</label>
+                                                    <select class="form-control" id="devStage">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label for="devCategory" class="control-label">
+                                                        Category:</label>
+                                                    <select class="form-control" id="devCategory">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    <label for="devDesciption" class="control-label">
+                                                        Description:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="devDescription" class="col-sm-12 col-xs-12" rows="15" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                        </div>
+                                        <div id="divQuoteFields" class="col-sm-12" hidden>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="qId" class="control-label ">
+                                                        Quote Id:</label>
+                                                    <input type="text" id="qId" class="form-control" />
+                                                    <label for="qAmount" class="control-label ">
+                                                        Amount:</label>
+                                                    <input type="text" id="qAmount" class="form-control" />
+                                                    <label for="qInvoice" class="control-label ">
+                                                        Invoice:</label>
+                                                    <input type="text" id="qInvoice" class="form-control" />
+                                                    <label for="glAccount" class="control-label ">
+                                                        GL Account:</label>
+                                                    <input type="text" id="glAccount" class="form-control" />
+                                                    <label for="qAnnMaintFee" class="control-label ">
+                                                        Annual Maintenace Fee:</label>
+                                                    <input type="text" id="qAnnMaintFee" class="form-control" />
+                                                    <label for="qAnnFeeDueDate" class="control-label ">
+                                                        Annual Fee Due Date:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="qAnnFeeDueDate" class="form-control" />
+                                                        <span id="qAnnFeeDueDateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <input type="checkbox" id="ckVendorRelease" style="margin-top: 15px" />
+                                                    <label for="ckVendorRelease" class="control-label">
+                                                        &nbsp;Full Release Required</label>
+                                                </div>
+                                                <div class=" form-group col-sm-6">
+                                                    <label for="qRequested" class="control-label">
+                                                        Quote Requested:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="qRequested" class="form-control" />
+                                                        <span id="qRequestedCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <label for="qReceived" class="control-label">
+                                                        Quote Received:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="qReceived" class="form-control" />
+                                                        <span id="qReceivedCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <label for="qApproved" class="control-label">
+                                                        Quote Approved:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="qApproved" class="form-control" />
+                                                        <span id="qApprovedCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <label for="sDelivered" class="control-label">
+                                                        Software Delivered:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="sDelivered" class="form-control" />
+                                                        <span id="sDeliveredCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <label for="sImplemented" class="control-label">
+                                                        Software Implemented:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="sImplemented" class="form-control" />
+                                                        <span id="sImplementedCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                    <label for="declinedDate" class="control-label">
+                                                        Declined Date:</label>
+                                                    <input type="text" id="declinedDate" class="form-control col-sm-1" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="divActivity" class="col-sm-12" hidden>
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    <label for="activityDescr" class="control-label">
+                                                        Description:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="activityDescr" class="col-sm-12 col-xs-12" rows="15" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                        </div>
+                                        <div id="divAxisBundle" class="col-sm-12" hidden>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="ax_types" class="control-label">
+                                                        Type:</label>
+                                                    <select class="form-control" id="ax_types">
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="ax_status" class="control-label">
+                                                        Status:</label>
+                                                    <select class="form-control" id="ax_status">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6" style="margin-top: 40px">
+                                                    <label for="txtCampanaDescr" class="control-label">
+                                                        Campana Description:</label>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="ticketNum" class="control-label">
+                                                        Ticket #:</label>
+                                                    <input type="text" class="form-control" id="ticketNum" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="txtCampanaDescr" class="col-sm-12 col-xs-12" rows="10" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    <label for="txtUserDescr" class="control-label">
+                                                        User Description:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="txtUserDescr" class="col-sm-12 col-xs-12" rows="10" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="owner" class="control-label">
+                                                        Owner:</label>
+                                                    <select class="form-control" id="owner">
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="ltt_date" class="control-label">
+                                                        Load to Test:</label>
+                                                    <div class="input-group" style="margin-bottom: 10px;">
+                                                        <input type="text" id="ltt_date" class="form-control" />
+                                                        <span id="ltt_dateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="trainby" class="control-label">
+                                                        Loaded to Train By:</label>
+                                                    <select class="form-control" id="trainby">
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="lttr_date" class="control-label">
+                                                        Load to Train:</label>
+                                                    <div class="input-group" style="margin-bottom: 10px;">
+                                                        <input type="text" id="lttr_date" class="form-control" />
+                                                        <span id="lttr_dateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="selprodby" class="control-label">
+                                                        Loaded to Prod By:</label>
+                                                    <select class="form-control" id="selprodby">
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-sm-6 ">
+                                                    <label for="ltp_date" class="control-label">
+                                                        Load to Prod:</label>
+                                                    <div class="input-group" style="margin-bottom: 10px;">
+                                                        <input type="text" id="ltp_date" class="form-control" />
+                                                        <span id="ltp_dateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                        </span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-sm-6 form-inline">
+                                                    <input type="checkbox" id="ckObsolete" />
+                                                    <label for="lblObsolete" class="control-label">
+                                                        &nbsp;Obsolete</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    <label for="lblObsReason" class="control-label">
+                                                        Obsolete Reason:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="txtObsReason" class="col-sm-12 col-xs-12" rows="5" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-sm-6 form-inline">
+                                                    <input type="checkbox" id="ckELR" />
+                                                    <label for="eml" class="control-label">
+                                                        &nbsp;Emergency Load</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 ">
+                                                    <label for="txtEMRReason" class="control-label">
+                                                        Emergency Load Reason:</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <textarea id="txtEMRReason" class="col-sm-12 col-xs-12" rows="5" cols="" style="margin-bottom: 15px"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblTaskComments" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--end split modal into two sections -->
+                            <!--task alerts -->
+                            <div class="row">
+                                <div id="errorlongdesc" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                                    hidden style="z-index: 10000">
+                                    <strong>*Title field in the Request section is required!</strong></div>
+                                <div id="task_error" class="alert alert-danger text-center" hidden style="z-index: 10000">
+                                </div>
+                                <div id="task_success" class="alert alert-success text-center" hidden style="z-index: 10000">
+                                </div>
+                            </div>
+                            <!--end task alerts -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn100px" id="modal-ok" data-dismiss="modal">
+                                    Save
+                                </button>
+                                <button type="button" id="modal-close" class="btn btn-primary btn100px" data-dismiss="modal">
+                                    Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div>-->
+        <!--end task modal-->
+        <!--input notes modal -->
+        <div class="modal fade" id="notesModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            Comments
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <textarea id="txtNotes" rows="10" cols="88%" hidden></textarea>
+                                <textarea id="txtAssessCmnts" rows="10" cols="88%" hidden></textarea>
+                                <textarea id="txtImpCmnts" rows="10" cols="88%" hidden></textarea>
+                                <textarea id="txtTaskCmnts" rows="10" cols="88%" hidden></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn100px" id="btnSaveNotes">
+                                    Save
+                                </button>
+                                <button type="button" class="btn btn-primary btn100px" data-dismiss="modal">
+                                    Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end input comments modal-->
+        <!--display comments modal   -->
+        <div class="modal fade" id="commentModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            <span id="cmntHeader"></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <textarea id="assessComment" rows="35" cols="137" disabled hidden></textarea>
+                            </div>
+                            <div class="row">
+                                <textarea id="detailComment" rows="35" cols="137" disabled hidden></textarea>
+                            </div>
+                            <div class="row">
+                                <textarea id="implementComment" rows="35" cols="137" disabled hidden></textarea>
+                            </div>
+                            <div class="row">
+                                <textarea id="allComment" rows="35" cols="137" disabled hidden></textarea>
+                            </div>
+                            <div class="row">
+                                <textarea id="taskComment" rows="35" cols="137" disabled hidden></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end display comments modal-->
+        <!--link modal -->
+        <div class="modal fade" id="divLinkModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            Link to Change Record
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <div id="divlink" style="text-align: center">
+                            </div>
+                            <!--<div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn100px" id="Button1">
+                                    Save
+                                </button>
+                                <button type="button" class="btn btn-primary btn100px" data-dismiss="modal">
+                                    Close</button>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end link modal-->
+        <!--confirm modal -->
+        <div class="modal fade" id="divConfirmModal" role="dialog" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            Confirm
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <div id="divWarningMsg" class="warning">
+                                If you change to this status the <strong>Approved By</strong> and <strong>Approved Date</strong>
+                                fields will be cleared out when you click Save on the record. Are you sure you want
+                                to proceed?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn100px" id="btnSaveConfirm">
+                                    Yes
+                                </button>
+                                <button type="button" class="btn btn-primary btn100px" data-dismiss="modal">
+                                    No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--confirm modal-->
+        <!--confirm modal2 -->
+        <div class="modal fade" id="divConfirmModal2" role="dialog" tabindex="-1">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header" style="text-align: center; font-weight: bolder">
+                            Confirm
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;</button>
+                        </div>
+                        <div class="container-fluid">
+                            <div id="divWarningMsg2" class="warning">
+                                If you change to this status the <strong>Actual Start Time</strong>, <strong>Actual
+                                    End Time</strong>, <strong>Completed By</strong>, <strong>Post Review By</strong>,
+                                <strong>Post Review Date</strong> fields will be cleared out when you click Save
+                                on the record. Are you sure you want to proceed?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn100px" id="btnSaveConfirm2">
+                                    Yes
+                                </button>
+                                <button type="button" class="btn btn-primary btn100px" data-dismiss="modal">
+                                    No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end confirm2 modal-->
+        <!--logo-->
+        <div class="row" style="border-bottom: 1px solid #00357E;">
+            <div id="div_logo" class="col-sm-12" style="background-color: #337ab7; padding-left: 0px">
+                <img id="logo" alt="logo" width="250px" height="60px" src="../images/aaa_wcny_logo.png" />
+                <span id="version" class="col-sm-offset-8" style="color: White">Version 1.4.1</span>
+            </div>
+        </div>
+        <!--end logo-->
+        <!--alerts-->
+        <div class="row">
+            <!-- success and error alerts for change records -->
+            <div id="successUpdate" class="alert alert-success col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>This record was successfully updated!</strong></div>
+            <div id="errorUpdate" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Failed to update record!</strong></div>
+            <div id="successInsert" class="alert alert-success col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Record was created successfully!</strong></div>
+            <div id="errorInsert" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Failed to create record!</strong>
+            </div>
+            <div id="errorSelect" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Failed to retrieve selected record!</strong></div>
+            <div id="errorTitle" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                *<strong>Title</strong> field in the Request section is required!</div>
+            <div id="error" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center" hidden>
+            </div>
+            <div id="success" class="alert alert-success col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+            </div>
+            <div id="taskupdatesuccess" class="alert alert-success col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>This task was successfully updated!</strong></div>
+            <div id="taskupdatefail" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Failed to update task!</strong></div>
+            <div id="taskinsertsuccess" class="alert alert-success col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Task was created successfully!</strong></div>
+            <div id="taskinsertfail" class="alert alert-danger col-sm-6 col-sm-offset-3 text-center"
+                hidden>
+                <strong>Failed to create task!</strong></div>
+        </div>
+        <!--end alerts -->
+        <!--landing page-->
+        <div class="row" id="divLanding">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button id="btnAdmin" class="btn btn-primary btnmenu">
+                            Administration
+                        </button>
+                        <button id="btnAllRequests" class="btn btn-primary btnmenu">
+                            Change Manager</button>
+                        <button id="btnReports" class="btn btn-primary btnmenu">
+                            Reports
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2" style="text-align: center">
+                        <div style="font-size: 50px">
+                            Service Manager</div>
+                        <div id="changeSOP">
+                            <span style="font-size: xx-large"><a id="cmpp_link" href="http://awnyandsp01:16672/sites/ITKB/kb/Wiki%20Documents/Forms/AllItems.aspx?RootFolder=%2fsites%2fITKB%2fkb%2fWiki%20Documents%2fStandard%20Operating%20Procedures%2fChange%20Management%20Policy%20and%20Process&FolderCTID=&View=%7b55823C5C%2d3AC4%2d4163%2dAB0E%2d78F55C5F882A%7d"
+                                target="_blank">Change Management Policy and Process</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end landing page -->
+        <!-- admin page -->
+        <div class="row" id="divAdmin" hidden>
+            <div class="col-sm-2 col-md-2">
+                <br />
+                <label id="adminHome" class="nav-title">
+                    Administration</label>
+                <br />
+                <button id="btnProjects" class="btn btn-primary btnmenu">
+                    Projects</button>
+                <button id="btnSI" class="btn btn-primary btnmenu">
+                    Strategic Initiatives</button>
+                <button type="button" id="addSI" class="btn btn-primary btnmenu">
+                    Create New
+                </button>
+                <button type="button" id="addProject" class="btn btn-primary btnmenu">
+                    Create New
+                </button>
+                <button type="button" id="pSave" class="btn btn-primary btnmenu">
+                    Save
+                </button>
+                <button type="button" id="saveSI" class="btn btn-primary btnmenu">
+                    Save
+                </button>
+                <button type="button" id="btnBackPrjct" class="btn btn-primary btnmenu">
+                    Back
+                </button>
+                <button type="button" id="btnBackSI" class="btn btn-primary btnmenu">
+                    Back
+                </button>
+                <button id="btnExitAdmin" class="btn btn-primary btnmenu">
+                    Exit</button>
+            </div>
+            <!--strategic section -->
+            <div class="col-sm-8 col-sm-offset-1 col-md-9 col-offset-1" id="divStrategic" hidden>
+                <div>
+                    <h3>
+                        <u>Add or Edit a Strategic Initiative in the form below.</u></h3>
+                    <br />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">
+                        Strategic Id#</label>
+                    <input type="text" id="siId" class="form-control" style="width: 50%" disabled />
+                    <label class="control-label">
+                        Title</label>
+                    <input type="text" id="siTitle" class="form-control" style="width: 50%" />
+                    <label class="control-label">
+                        Created By</label>
+                    <input type="text" id="siCreatedBy" class="form-control" style="width: 50%" id="createdbyST"
+                        disabled />
+                    <label class="control-label">
+                        Fiscal Year</label>
+                    <input type="text" id="siFY" class="form-control" style="width: 50%" />
+                    <label class="control-label">
+                        Owner</label>
+                    <input type="text" id="siOwner" class="form-control" style="margin-bottom: 15px;
+                        width: 50%" />
+                    <label id="" class="control-label">
+                        Description</label>
+                    <textarea id="siDescr" class="form-control" rows="15" cols="" style="margin-bottom: 15px;
+                        width: 50%"></textarea>
+                    <input type="checkbox" id="siActive" class="" /><label class="">&nbsp; Completed</label>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-offset-3" id="divSI" hidden>
+                <div>
+                    <h3>
+                        <u>Strategic Initiatives</u></h3>
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <table id="tblSI" class="table table-striped table-bordered table-hover table-condensed ">
+                            <thead>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-offset-3" id="divSI_CR" hidden>
+                <div class="col-sm-12">
+                    <h3>
+                        <u>All Change Records Related to Strategic Initiative Id</u></h3>
+                    <br />
+                </div>
+                <div class="col-sm-10">
+                    <table id="tblSI_CR" class="table table-striped table-bordered table-hover table-condensed ">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <!--end strategic section -->
+            <!--project section -->
+            <div class="col-sm-8 col-sm-offset-1 col-md-9 col-offset-1" id="divProjects" hidden>
+                <div class="col-sm-12">
+                    <h3>
+                        <u>Add or Edit a Project in the form below.</u></h3>
+                    <br />
+                </div>
+                <div class="col-sm-5">
+                    <label class="control-label" for="p_Id">
+                        Project Id#</label>
+                    <input type="text" id="p_Id" class="form-control" disabled />
+                </div>
+                <div class="col-sm-5">
+                    <label class="control-label" for="p_CreatedBy">
+                        Created By</label>
+                    <input type="text" class="form-control" id="p_CreatedBy" disabled />
+                </div>
+                <div class="col-sm-10">
+                    <label class="control-label" for="p_Title">
+                        Title</label>
+                    <input type="text" id="p_Title" class="form-control" />
+                </div>
+                <div class="col-sm-5">
+                    <label class="control-label" for="p_FY">
+                        Fiscal Year</label>
+                    <input type="text" id="p_FY" class="form-control" />
+                </div>
+                <div class="col-sm-5">
+                    <label class="control-label" for="p_Owner">
+                        Owner</label>
+                    <input type="text" id="p_Owner" class="form-control" style="margin-bottom: 15px;" />
+                </div>
+                <div class="col-sm-5">
+                    <label for="pStartDate" class="control-label">
+                        Start Date:</label>
+                    <div class="input-group date " id="divPStartDate" style="margin-bottom: 15px;">
+                        <input type="text" id="pStartDate" class="form-control" />
+                        <span id="pStartDateCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                        </span></span>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <label for="pEndtDate" class="control-label">
+                        End Date:</label>
+                    <div class="input-group date" id="divPEndtDate" style="margin-bottom: 15px;">
+                        <input type="text" id="pEndDate" class="form-control" />
+                        <span id="pEndDateCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                        </span></span>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <label id="" for="txtpDescr" class="control-label">
+                        Description</label>
+                    <textarea id="txtpDescr" class="form-control" rows="15" cols="" style="margin-bottom: 15px"></textarea>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">
+                        Status</label>
+                    <select id="selPS" class="form-control" style="margin-bottom: 15px">
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">
+                        Business Line</label>
+                    <select id="selBL" class="form-control" style="margin-bottom: 15px">
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <input type="checkbox" id="pckComplete" /><label class="">&nbsp; Completed</label>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-offset-3" id="divProjectTbl" hidden>
+                <div class="col-sm-12">
+                    <h3>
+                        <u>Projects</u></h3>
+                    <br />
+                </div>
+                <div class="col-sm-10">
+                    <table id="tblProjects" class="table table-striped table-bordered table-hover table-condensed ">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-offset-3" id="divCRProjects" hidden>
+                <div class="col-sm-12">
+                    <h3>
+                        <u>All Change Records Related to Project Id</u></h3>
+                    <br />
+                </div>
+                <div class="col-sm-10">
+                    <table id="tblCRProject" class="table table-striped table-bordered table-hover table-condensed ">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <!--end project section -->
+        </div>
+        <!--end admin page -->
+        <!--change manager screen-->
+        <div class="row" id="main" hidden>
+            <div class="col-sm-2">
+                <br />
+                <label id="chgmgthome" class=" nav-title">
+                    Change Manager</label>
+                <br />
+                <input type="button" id="btnFilter" value="Filter" class="btn btn-primary btnmenu form-control"
+                    hidden />
+                <input type="button" id="btnResetFilter" value="Reset" class="btn btn-primary btnmenu form-control"
+                    hidden />
+                <button id="btnrequest" class="btn btn-primary btnmenu form-control">
+                    Create New</button>
+                <button id="btnexit" class="btn btn-primary btnmenu form-control">
+                    Exit</button>
+            </div>
+            <div>
+                &nbsp;</div>
+            <div class="col-sm-10">
+                <div id="tabmenu2">
+                    <ul class="nav nav-tabs nav-collapse">
+                        <li id="myAssignments" class='active'><a id="aMyAssign" data-toggle="tab" href="#myAssign">
+                            My Assignments</a></li>
+                        <li id="changerequests"><a id="aChangeRequest" data-toggle="tab" href="#changeRequests">
+                            Change Requests</a></li>
+                        <li id="changerecords"><a id="aChangeRecord" data-toggle="tab" href="#changeRecords">
+                            Change Records</a></li>
+                        <li id="changetasks"><a id="aChangeTask" data-toggle="tab" href="#changeTasks">Change
+                            Tasks</a></li>
+                        <li id="filter"><a id="aFilter" data-toggle="tab" href="#divFilter">Advanced Filter</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="changeRequests" class="tab-pane fade in  ">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4 ">
+                                    <h1>
+                                        <u>Change Requests</u>
+                                    </h1>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblchangeadmin" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <h1>
+                                    <u>Change Requests with Open Assessment Tasks</u></h1>
+                                <br />
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblOpenAssessments" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <h1>
+                                    <u>Change Requests with Rejected Reason of Needs More Information</u></h1>
+                                <br />
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblRejectReasons" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="changeRecords" class="tab-pane fade in   ">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4">
+                                    <h1>
+                                        <u>Change Records</u>
+                                    </h1>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblchangerecord" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="changeTasks" class="tab-pane fade in   ">
+                            <div class="row">
+                                <div class="col-sm-3  col-md-4">
+                                    <h1>
+                                        <u>Change Tasks</u>
+                                    </h1>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="tblAllTasks" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myAssign" class="tab-pane fade in active ">
+                            <div class="col-sm-3  col-md-4 ">
+                                <h1>
+                                    <u>Requests</u>
+                                </h1>
+                                <br />
+                            </div>
+                            <table id="tblMyRequests" class="table table-striped table-bordered table-hover table-condensed ">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                            <div class="col-sm-3 col-md-4">
+                                <h1>
+                                    <u>Records</u>
+                                </h1>
+                                <br />
+                            </div>
+                            <table id="tblMyRecords" class="table table-striped table-bordered table-hover table-condensed ">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                            <div class="col-sm-3  col-md-4">
+                                <h1>
+                                    <u>Tasks</u>
+                                </h1>
+                                <br />
+                            </div>
+                            <table id="tblMyTasks" class="table table-striped table-bordered table-hover table-condensed ">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div id="divFilter" class="tab-pane fade in   ">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-4">
+                                    <h1>
+                                        <u>Advanced Filter</u>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <br />
+                                <div class="col-sm-1 col-md-2 ">
+                                    <label for="filterbyId" class="control-label">
+                                        Change Id:</label>
+                                    <input type="text" id="filterbyId" class="form-control" />
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="f_status" class="control-label">
+                                        Status:
+                                    </label>
+                                    <select id="f_status" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 col-md-2 ">
+                                    <label for="f_type" class="control-label">
+                                        Type:
+                                    </label>
+                                    <select id="f_type" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="f_busline" class="control-label">
+                                        Business Line:
+                                    </label>
+                                    <select id="f_busline" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <br />
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="f_requestedby" class="control-label">
+                                        Requested By:
+                                    </label>
+                                    <select id="f_requestedby" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="begCD" class="control-label">
+                                        Begin Create Date:</label>
+                                    <div class="input-group date " id="Div5" style="margin-bottom: 15px;">
+                                        <input type="text" id="begCD" class="form-control" />
+                                        <span id="begCD_Cal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="endCD" class="control-label">
+                                        End Create Date:</label>
+                                    <div class="input-group date " id="Div6" style="margin-bottom: 15px;">
+                                        <input type="text" id="endCD" class="form-control" />
+                                        <span id="endCD_Cal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-md-2 ">
+                                    <label for="f_bus_priorityId" class="control-label">
+                                        Business Priority:
+                                    </label>
+                                    <select id="f_bus_priorityId" name="f_bus_priorityId" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-1 col-md-2 ">
+                                    <label for="f_assignToId" class="control-label">
+                                        Assigned To:
+                                    </label>
+                                    <select id="f_assignToId" name="f_assignToId[]" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="begDD" class="control-label">
+                                        Begin Due Date:</label>
+                                    <div class="input-group date " id="" style="margin-bottom: 15px;">
+                                        <input type="text" id="begDD" class="form-control" />
+                                        <span id="begDD_Cal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-md-2  ">
+                                    <label for="endDD" class="control-label">
+                                        End Due Date:</label>
+                                    <div class="input-group date " id="Div4" style="margin-bottom: 15px;">
+                                        <input type="text" id="endDD" class="form-control" />
+                                        <span id="endDD_Cal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 id="lblSearch" hidden>
+                                        <u>Search Results:</u></h1>
+                                    <br />
+                                    <table id="tblFilter" class="table table-striped table-bordered table-hover table-condensed ">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end change manager screen -->
+        <!--reports page -->
+        <div class="row" id="divReports" hidden>
+            <div class="row">
+                <div class="col-sm-2">
+                    <button id="rptsExit" class="btn btn-primary btnmenu">
+                        Exit
+                    </button>
+                </div>
+                <div class="col-sm-7 col-sm-offset-3 margin-btm-c">
+                    <h1>
+                        Change Reports</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-3 col-sm-offset-2 ">
+                    <button id="rptAxisBundle" class="btn btn-primary btnmenu">
+                        AXIS Bundles
+                    </button>
+                    <button id="rptFilter" class="btn btn-primary btnmenu">
+                        Change Management Record</button>
+                    <button id="rptSummCM" class="btn btn-primary btnmenu">
+                        Completed Changes Summary
+                        <br />
+                        by Change Manager</button>
+                    <button id="rptTBA" class="btn btn-primary btnmenu">
+                        Completed Tasks By Agent
+                    </button>
+                </div>
+                <div class="col-sm-3 ">
+                    <button id="rptDA" class="btn btn-primary btnmenu">
+                        Development Analysis
+                    </button>
+                    <button id="rptAgent" class="btn btn-primary btnmenu">
+                        Overdue Tasks By Agent</button>
+                    <button id="rptDetail" class="btn btn-primary btnmenu">
+                        Requested Changes Detail</button>
+                    <button id="rptSummary" class="btn btn-primary btnmenu">
+                        Requested Changes Summary</button>
+                </div>
+                <div class="col-sm-3 ">
+                    <button id="rptAgent1" class="btn btn-primary btnmenu">
+                        Tasks By Agent</button>
+                    <button id="rptVQA" class="btn btn-primary btnmenu">
+                        Vendor Quotes Analysis
+                    </button>
+                    <button id="rptVQGL" class="btn btn-primary btnmenu">
+                        Vendor Quotes By
+                        <br />
+                        GL Account By Status
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--  <div class="row col-sm-2" id="divFilters" hidden style="margin-left: 15px; margin-top: 75px;">
+             <div class="row">
+                <div class="margin-btm-c col-sm-6" style="margin-left: -15px">
+                    <label for="selObsolete" class="control-label">
+                        Obsolete:</label>
+                    <select id="selObsolete" class="form-control">
+                       <option value="None selected">None selected</option>
+                       <option value="No">No</option>
+                       <option value="Yes">Yes</option>                      
+                    </select>
+                </div>
+            </div>-->
+        <!--  <div class="row">
+                <div class=" c_margin_btm">
+                    <label for="ltpf" class="control-label">
+                        Load to Prod From:</label>
+                    <div class="input-group date c_margin_btm col-sm-6" id="">
+                        <input type="text" id="ltpf" class="form-control ltp" />
+                        <span id="ltpfCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                        </span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" c_margin_btm">
+                    <label for="ltpf" class="control-label">
+                        Load to Prod To:</label>
+                    <div class="input-group date margin-btm-c col-sm-6 " id="">
+                        <input type="text" id="ltpt" class="form-control ltp" />
+                        <span id="ltptCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                        </span></span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="row" id="divRptAxis" hidden>
+            <div class="row">
+                <div>
+                    <span class="col-sm-2">
+                        <button id="rptExit" class="btn btn-primary btnmenu form-control">
+                            Exit</button>
+                    </span>
+                    <h1 class="col-sm-4 col-sm-offset-3 " style="margin-bottom: 25px">
+                        AXIS Bundle Report</h1>
+                </div>
+            </div>
+            <div class="row col-sm-offset-2 col-sm-10">
+                <div class="col-sm-3 margin-btm-c">
+                    <label for="multiSelect">
+                        Status:</label>
+                    <select id="multiSelect" multiple>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-sm-offset-2 col-sm-10">
+                <div class="col-sm-3 margin-btm-c">
+                    <label for="multiSelect2" class="control-label">
+                        Assigned To:</label>
+                    <select id="multiSelect2" class="form-control" multiple>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-sm-offset-2 col-sm-10">
+                <div class="col-sm-12">
+                    <table id="tblAxisRpt" class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end reports page
+    -->
+    <!--line break-->
+    <div class="row">
+        &nbsp;</div>
+    <!--end line break -->
+    <!--change record tabs page-->
+    <div class="row" id="requestdetails" hidden>
+        <div class="container-fluid">
+            <!-- change record nav buttons -->
+            <div class="col-sm-2 " id="navbuttons">
+                <label id="ReqRecNav" class="nav-title">
+                </label>
+                <span id="spanTask" hidden>
+                    <button type="button" class="btn btn-primary btnmenu" id="btnAddTask">
+                        Add Change Task</button>
+                </span>
+                <button type="button" class="btn btn-primary btnmenu" id="btnChangeReport">
+                    Report</button>
+                <button id="btnLink" class="btn btn-primary btnmenu">
+                    Link</button>
+                <button type="button" class="btn btn-primary btnmenu" id="btnSave">
+                    Save</button>
+                <button type="button" class="btn btn-primary btnmenu" id="btnexitchange">
+                    Exit</button>
+            </div>
+            <!-- end change record nav buttons -->
+            <!---change record tabs-->
+            <div id="tabmenu" class="col-sm-10  ">
+                <ul class="nav nav-tabs nav-collapse" id="tabs">
+                    <li><a id="requestTab" data-toggle="tab" href="#request">Request</a></li>
+                    <li><a id="assessTab" data-toggle="tab" href="#assess">Assessment</a></li>
+                    <!-- <li><a id="techAssessTab" data-toggle="tab" href="#techassess">Technical Assessment</a></li>-->
+                    <li><a id="rdTab" data-toggle="tab" href="#related">Details</a></li>
+                    <li><a id="implementTab" data-toggle="tab" href="#implement">Implementation</a></li>
+                    <li><a id="commentsTab" data-toggle="tab" href="#cmnts">Comments</a></li>
+                    <li><a id="historyTab" data-toggle="tab" href="#history">History</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="request" class="tab-pane fade in active ">
+                        <div class="row">
+                            &nbsp;</div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="form-group  col-sm-3 col-md-4">
+                                    <label for="shortdesc" class="control-label">
+                                        *Title:</label>
+                                    <input type="text" id="shortdesc" class="form-control validate[required]" placeholder="Enter Short Description" />
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="requestnum" class="control-label">
+                                        Request #:</label>
+                                    <input type="text" id="requestnum" class="form-control col-sm-1" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="source" class="control-label">
+                                        Source:</label>
+                                    <select class="form-control" id="source">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4" id="divSourceTxt">
+                                    <label for="sourceid" class="control-label">
+                                        Source Id:</label>
+                                    <input type="text" class="form-control" id="sourceid" />
+                                </div>
+                                <!-- <div class="form-group col-sm-3 col-md-4" hidden id="divSourceSel">
+                                        <label id="lbl_selSourceId" for="selSourceId" class="control-label">
+                                            Source Id:</label>
+                                        <select class="form-control" id="selSourceId">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3 col-md-4" hidden id="divSourceSel2">
+                                        <label id="lbl_selSourceId2" for="selSourceId2" class="control-label">
+                                            Source Id:</label>
+                                        <select class="form-control" id="selSourceId2">
+                                        </select>
+                                    </div>-->
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="otherSrc" class="control-label">
+                                        Other Source:</label>
+                                    <select class="form-control" id="otherSrc">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4" id="divTitle" hidden>
+                                    <label id="" for="selOtherSrc" class="control-label">
+                                        Title:</label>
+                                    <select class="form-control" id="selOtherSrc">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4" id="divTitle2" hidden>
+                                    <label id="" for="selOtherSrc2" class="control-label">
+                                        Title:</label>
+                                    <select class="form-control" id="selOtherSrc2">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="requestedby" class="control-label">
+                                        Requested By:</label>
+                                    <select class="form-control" id="requestedby">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="requestbydatepickerCal" class="control-label">
+                                        Requested Completion Date:</label>
+                                    <div class="input-group date" id="requestbydatepickerCal" style="margin-bottom: 10px;">
+                                        <input type="text" id="requestbydatepicker" class="form-control" />
+                                        <span id="reqCalendar" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="bus_line">
+                                        Business Line:</label>
+                                    <select class="form-control" id="bus_line">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="type">
+                                        Type:</label>
+                                    <span class="glyphicon glyphicon-info-sign  blue-tooltip " data-toggle="tooltip"
+                                        data-placement="auto top" data-html="true" data-original-title="<b>Emergency:&nbsp;</b><br /> A change that is reserved for changes intended to repair an error in an IT service that is impacting the business to a high degree or to protect the organization from a threat.<br /><br /> <b>Normal: &nbsp;</b><br /> A change that must follow the defined steps of the change management process.">
+                                    </span>
+                                    <select class="form-control" id="type">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4" id="divBusPriority">
+                                    <label for="buspriority">
+                                        Business Priority:</label>
+                                    <span class="glyphicon glyphicon-info-sign blue-tooltip" data-toggle="tooltip" data-placement="auto top"
+                                        data-html="true" data-original-title="<b> High:</b><br />This priority severly affects some key users, or impacts a large number of users.<br /><br /><b> Medium:</b><br /> This priority has no severe impact, but change cannot wait until the next scheduled release or upgrade.<br /><br /><b>Low:</b><br /> This priority is not required immediately, however a prolonged delay would involve disadvantages to the business.">
+                                    </span>
+                                    <select class="form-control" id="buspriority">
+                                    </select>
+                                </div>
+                                <div class="form-group  col-sm-3 col-md-4">
+                                    <label for="crdate" class="control-label ">
+                                        Created Date:&nbsp;</label>
+                                    <input type="text" id="crdate" class="form-control col-sm-1" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="form-group col-sm-3 col-md-4">
+                                        <label for="blcontact">
+                                            Business Line Contact:</label>
+                                        <select class="form-control" id="blcontact">
+                                        </select>
+                                    </div>-->
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="blapprover">
+                                        Business Line Approver:</label>
+                                    <select class="form-control" id="blapprover">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3  col-md-4 ">
+                                    <label for="crby" class="control-label ">
+                                        Created By:&nbsp;</label>
+                                    <input type="text" id="crby" class="form-control col-sm-1" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="assignedto" class="control-label">
+                                        Change Manager:</label>
+                                    <select class="form-control" id="assignedto">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="approvedby" class="control-label">
+                                        Approved By:</label>
+                                    <input type="text" class="form-control" id="approvedby" disabled />
+                                </div>
+                            </div>
+                            <!--<div class="row">
+                                    <div id="error_status" class="alert alert-danger col-sm-8 text-center"  hidden>
+                                    </div>
+                                </div>
+-->
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="type">
+                                        Status:</label>
+                                    <select class="form-control" id="status">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-3  col-md-4 ">
+                                    <label for="approveddate" class="control-label">
+                                        Approved Date:</label>
+                                    <input type="text" class="form-control" id="approveddate" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="row" id="divReject" hidden>-->
+                                <div class="form-group col-sm-3  col-md-4" hidden id="divReject">
+                                    <label for="rejectReason">
+                                        Reject Reason:</label>
+                                    <select class="form-control" id="rejectReason">
+                                    </select>
+                                    <!--  <textarea rows="5" cols="100%" class="form-control" id="rejectReason">
+                                        </textarea>-->
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3 col-md-4">
+                                    <label for="startdate" class="control-label">
+                                        Start Date:</label>
+                                    <div class="input-group date" id="Div3" style="margin-bottom: 10px;">
+                                        <input type="text" id="startdate" class="form-control" />
+                                        <span id="startdateCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-3  col-md-4 ">
+                                    <label for="completedateCal" class="control-label">
+                                        Completed Date:</label>
+                                    <div id="completedateCal" class="">
+                                        <input type="text" id="completedate" disabled="disabled" class="form-control" />
+                                        <!-- <span id="completeCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                            </span></span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="description" class="col-sm-1">
+                                    Description:</label>
+                            </div>
+                            <div class="row">
+                                <textarea id="description" rows="15" cols="100%" class="col-sm-6 col-md-8" style="margin-left: 15px;
+                                    margin-bottom: 15px"></textarea>
+                            </div>
+                            <div class="row">
+                                <label for="businesscase" class="control-label col-sm-1 col-md-2">
+                                    Business Case:</label>
+                            </div>
+                            <div class="row">
+                                <textarea id="businesscase" rows="15" cols="100%" class="col-sm-6 col-md-8" style="margin-left: 15px;
+                                    margin-bottom: 15px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="assess" class="tab-pane fade">
+                        <div class="row">
+                            &nbsp;</div>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="assessby" class="control-label">
+                                            Assigned To:</label>
+                                        <select class="form-control" id="assessby">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3 ">
+                                        <label for="taskStatus1" class="control-label">
+                                            Status:</label>
+                                        <select class="form-control" id="taskStatus1">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label for="duedate" class="control-label">
+                                            Due Date:</label>
+                                        <div class="input-group" style="margin-bottom: 10px;">
+                                            <input type="text" id="duedate1" class="form-control" />
+                                            <span id="duedateCal1" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                            </span></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-3 col-md-3">
+                                        <label for="assessbyDate" class="control-label">
+                                            Completed Date:</label>
+                                        <div class="input-group date" id="Div2" style="margin-bottom: 10px;">
+                                            <input type="text" id="assessbyDate" class="form-control" />
+                                            <span id="assessByCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                            </span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--  <div class="form-group col-sm-3" hidden>
+                                        <label for="category">
+                                            Category:</label>
+                                        <select class="form-control" id="category">
+                                        </select>
+                                    </div>-->
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="priority">
+                                            Priority:</label>
+                                        <span style="text-align: left" class="glyphicon glyphicon-info-sign blue-tooltip"
+                                            data-toggle="tooltip" data-placement="auto top" data-html="true" data-original-title="<b>Immediate:</b><br />This priority involves significant loss of revenue or ability to deliver service.Immediate action required.<br /><br /><b> High:</b><br />This priority severly affects some key users, or impacts a large number of users.<br /><br /><b> Medium:</b><br />This priority has no severe impact, but change cannot wait until the next scheduled release or upgrade.<br /><br /><b>Low:</b><br /> This priority is not required immediately, however a prolonged delay would involve disadvantages to the business.">
+                                        </span>
+                                        <select class="form-control" id="priority">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="impact" class="control-label">
+                                            Service Impact:</label>
+                                        <span class="glyphicon glyphicon-info-sign blue-tooltip" data-toggle="tooltip" data-placement="auto top"
+                                            data-html="true" data-original-title="<b>Significant:</b><br /> This affects one or more services. Change affects fundamental parts of the IT infrastructure, supporting several services.<br /><br /><b>Major:</b><br /> This affects a major part of the business-critical infrastructure/service.  Change introduces major new technologies on a considerable scale.<br /><br /><b>Minor:</b><br /> These changes are related to a single service and side-effects can be safely excluded.">
+                                        </span>
+                                        <select class="form-control" id="impact">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="busimpact" class="control-label">
+                                            Business Impact:</label>
+                                        <select class="form-control" id="busimpact">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="risk">
+                                            Probability of Failure:</label>
+                                        <select class="form-control" id="risk">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-2 col-md-3">
+                                        <label for="riskcalc" class="control-label">
+                                            Risk Level:</label>
+                                        <span style="text-align: left" class="glyphicon glyphicon-info-sign blue-tooltip"
+                                            data-toggle="tooltip" data-placement="auto top" data-html="true" data-original-title="<b>Risk levels are categorized as High(1-2), Medium(3-4), and Low(5-9) and is a combination of Business Impact and Probability of Failure.</b>">
+                                        </span>
+                                        <label class="form-control" id="riskcalc">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3  col-md-5">
+                                        <label for="busnonimplement" class=" control-label">
+                                            Effects of Non-Implementation:</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <textarea id="busnonimplement" rows="15" cols="100%" class="col-sm-9 col-md-12" style="margin-left: 15px;
+                                        margin-bottom: 15px"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label for="resources" class=" control-label">
+                                            Required Resources:</label>
+                                        <span style="text-align: left" class="glyphicon glyphicon-info-sign blue-tooltip"
+                                            data-toggle="tooltip" data-placement="auto top" data-html="true" data-original-title="<b>The resources required to implement the change. Additional ongoing resources required if the change is implemented.</b>">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <textarea id="txtResources" rows="15" cols="100%" class="col-sm-9 col-md-12" style="margin-left: 15px;
+                                        margin-bottom: 15px"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="tasknotes1" class="control-label">
+                                            Comments:</label>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 15px">
+                                    <div class="col-sm-12">
+                                        <button id="btnAddAssessCmnt" class="btn btn-primary col-sm-2">
+                                            Add Comment</button>
+                                        <span id="errorAssess" class="alert alert-danger col-sm-6 col-sm-offset-2  text-center"
+                                            hidden></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="tblAssessComments" class="table table-striped table-bordered table-hover table-condensed ">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="techassess" class="tab-pane fade">
+                            <div class="row">
+                                &nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="form-group col-sm-2 col-md-3">
+                                            <label for="t_assessby" class="control-label">
+                                                Assigned To:</label>
+                                            <select class="form-control" id="t_assessby">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-3 ">
+                                            <label for="t_status" class="control-label">
+                                                Status:</label>
+                                            <select class="form-control" id="t_status">
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label for="t_duedate" class="control-label">
+                                                Due Date:</label>
+                                            <div class="input-group" style="margin-bottom: 10px;">
+                                                <input type="text" id="t_duedate" class="form-control" />
+                                                <span id="t_duedateCal" class="input-group-addon "><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-3 col-md-3">
+                                            <label for="t_assessbyDate" class="control-label">
+                                                Completed Date:</label>
+                                            <div class="input-group date" id="" style="margin-bottom: 10px;">
+                                                <input type="text" id="t_assessbyDate" class="form-control" />
+                                                <span id="t_assessbyDateCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3  col-md-5">
+                                            <label for="techNotes" class=" control-label">
+                                                Notes:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <textarea id="techNotes" rows="15" cols="100%" class="col-sm-9 col-md-12" style="margin-left: 15px;
+                                            margin-bottom: 15px"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                    <div id="implement" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="row">
+                                        <h3>
+                                            <label class="col-sm-12" style="text-decoration: underline; margin-bottom: 15px;
+                                                margin-left: 15px;">
+                                                Planning</label></h3>
+                                    </div>
+                                    <!--<div class="form-group col-sm-3">
+                                            <label for="assignedto" class="control-label">
+                                                Assigned To:</label>
+                                            <select class="form-control" id="assignedto">
+                                            </select>
+                                        </div>-->
+                                    <div class="col-sm-12" style="border: 1px solid black; margin-left: 15px;">
+                                        <div class="row">
+                                            <p class="col-sm-8">
+                                                <b>Change Plan</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <textarea id="changeplan" rows="15" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                                                margin-bottom: 15px;"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col-sm-8">
+                                                <b>Backout Plan</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <textarea id="backoutplan" rows="15" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                                                margin-bottom: 15px;"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col-sm-8">
+                                                <b>Test Plan</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <textarea id="testplan" rows="15" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                                                margin-bottom: 15px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px">
+                                <div class="col-sm-12">
+                                    <h3>
+                                        <label style="text-decoration: underline" class="col-sm-8">
+                                            Schedule</label></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form class="form-inline">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="startdatepicker" class="control-label">
+                                                Planned Start Time</label>
+                                            <div class='input-group'>
+                                                <input id='startdatepicker' type='text' class="form-control" />
+                                                <span id="wedCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="enddatepicker" class="control-label">
+                                                Planned End Time</label>
+                                            <div class='input-group'>
+                                                <input id='enddatepicker' type='text' class="form-control" />
+                                                <span id="endCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group col-sm-3">
+                                            <label for="startdatepickerCal" class="control-label">
+                                                Planned Start Date</label>
+                                            <div class="input-group" id="startdatepickerCal" style="margin-bottom: 10px;">
+                                                <input type="text" id="startdatepicker" class="form-control" />
+                                                <span id="startCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div> 
+                                          <div class="form-group col-sm-3">
+                                            <label for="starttimepicker" class="control-label">
+                                                Planned Start Time</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="starttimepicker" type="text" class="form-control input-small">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span> 
+                                          </div>
+                                        </div> 
+                                          <div class="form-group col-sm-3 ">
+                                            <label for="enddatepicker" class="control-label">
+                                                Planned End Date</label>
+                                            <div id="enddatepickerDiv" class="input-group" style="margin-bottom: 10px;">
+                                                <input type="text" id="enddatepicker" class="form-control" />
+                                                <span id="endCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar"> 
+                                                </span></span> 
+                                        </div> 
+                                        </div> 
+                                         <div class="form-group col-sm-3">
+                                            <label for="endtimepicker" class="control-label">
+                                                Planned End Time</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="endtimepicker" type="text" class="form-control input-small">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span> 
+                                        </div>
+                                        </div> 
+                                         </form> 
+                                          </div>
+                                    <div class="row"> 
+                                        <form class="form-inline" action="">
+                                         <div class="form-group col-sm-3">
+                                            <label for="workstartdatepickerCal" class="control-label">
+                                                Actual Start Date</label>
+                                            <div class="input-group" id="workstartdatepickerCal" style="margin-bottom: 10px;">
+                                                <input type="text" id="workstartdatepicker" class="form-control" />
+                                                <span id="workstartCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group col-sm-3">
+                                            <label for="actualStartTimepicker" class="control-label">
+                                                Actual Start Time</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="actualStartTimepicker" type="text" class="form-control input-small" />
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
+                                        </div>-->
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="workstartdatepicker" class="control-label">
+                                                Actual Start Time</label>
+                                            <div class='input-group'>
+                                                <input id='workstartdatepicker' type='text' class="form-control" />
+                                                <span id="aStartCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="workenddatepicker" class="control-label">
+                                                Actual End Time</label>
+                                            <div class='input-group'>
+                                                <input id='workenddatepicker' type='text' class="form-control" />
+                                                <span id="aEndCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group col-sm-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class='col-sm-6'>
+                                                        <div class="form-group">   
+                                        <label for="workenddatepicker" class="control-label">
+                                                                Actual End Time</label>
+                                                            <div class='input-group date' id='workenddatepicker'>
+                                                                <input type='text' class="form-control"  />
+                                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                    <!-- </div> -->
+                                    <!-- <div class="form-group col-sm-3">
+                                            <div class="well">
+                                                <div id="workenddatepicker" class="input-append">
+                                                    <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" />
+                                                    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>  
+                                        </div>-->
+                                    <!--  <div class="form-group col-sm-3">
+                                            <label for="workenddatepickerCal " class="control-label">
+                                                Actual End Date</label>
+                                            <div class="input-group" id="workenddatepickerCal" style="margin-bottom: 10px;">
+                                                <input type="text" id="workenddatepicker" class="form-control" />
+                                                <span id="workendCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                                </span></span>
+                                            </div>
+                                        </div> 
+                                         <div class="form-group col-sm-3">
+                                            <label for="workenddatepicker" class="control-label">
+                                                Actual End Time</label>
+                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                <input id="workenddatepicker" type="text" class="form-control input-small">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
+                                        </div>-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px">
+                            <div class="form-group col-sm-3">
+                                <label for="completedby" class="control-label">
+                                    Completed By:</label>
+                                <select class="form-control" id="completedby">
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-2">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px">
+                            <h3>
+                                <label style="text-decoration: underline" class="col-sm-8">
+                                    Post Implementation</label></h3>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-2">
+                                <label for="postReviewBy" class="control-label">
+                                    Post Review By:</label>
+                                <select class="form-control" id="postReviewBy">
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label for="postReviewCal" class="control-label">
+                                    Post Review Date:</label>
+                                <div id="postReviewCal" class="input-group">
+                                    <input type="text" id="postReviewDate" class="form-control" />
+                                    <span id="postCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                    </span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 ">
+                                <label for="postComments" class="control-label">
+                                    Comments:</label>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                                <div class="col-sm-8 ">
+                                    <textarea id="comments" class="col-sm-12 col-xs-12" rows="20" cols="" style="margin-bottom: 15px"></textarea></div>
+                            </div>
+    -->
+                        <!--<div class="row"> <div class="form-group col-sm-6"> <label for="stage">
+    Stage:</label> <select class="form-control" style="width:50%" id="stage"> </select>
+    <span id="rejectReason" hidden> <label for="txtareaStage" class="control-label">
+    Reason for Rejection:</label> <textarea id="txtareaStage" rows="5" cols="100%" class="form-control">
+    </textarea> </span> </div> </div>-->
+                        <div class="row" style="margin-bottom: 15px">
+                            <div class="col-sm-12">
+                                <button id="btnAddImplementCmnt" class="btn btn-primary col-sm-2">
+                                    Add Comment</button>
+                                <span id="errorImplement" class="alert alert-danger col-sm-6 col-sm-offset-2  text-center"
+                                    hidden></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="tblImplComments" class="table
+    table-striped table-bordered table-hover table-condensed ">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="related" class="tab-pane
+    fade">
+                        <div class="row">
+                            <h3>
+                                <label class="col-sm-8" style="text-decoration: underline; margin-bottom: 15px;">
+                                    Add Related Documents
+                                </label>
+                            </h3>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px">
+                            <div class="form-group col-sm-2">
+                                <label for="addLinkTitle">
+                                    Title</label>
+                                <input type="text" class="form-control" id="addLinkTitle" />
+                            </div>
+                            <div class="form-group col-sm-2 ">
+                                <label for="addLinkType">
+                                    Type</label>
+                                <select class="form-control" id="addLinkType">
+                                    <option value="Link">Link</option>
+                                    <option value="File">File</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-5" id="divAddLink" hidden>
+                                <label for="addLinkValue">
+                                    Link/Document</label>
+                                <div class="form-inline">
+                                    <input type="text" class="form-control" id="addLinkValue" style="width: 75%" />
+                                    <button id="btnaddDoc" class="btn btn-default">
+                                        Add</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-5" id="divFileUpload" hidden>
+                                <input id="fileUpload" type="file" class="form-control" />
+                                <button id="btnUploadFile" class="btn btn-primary form-control">
+                                    Upload File</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-9">
+                                <table id="tblRelatedDocs" class="table table-striped table-bordered table-hover table-condensed ">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group
+    col-sm-9">
+                                <h3>
+                                    <label for="tblChangeTasks" style="margin-bottom: 15px; text-decoration: underline">
+                                        Related Tasks</label></h3>
+                                <table id="tblChangeTasks" class="table table-striped
+    table-bordered table-hover table-condensed ">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                        <!-- <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>-->
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="notes" class="control-label
+    col-sm-1 col-md-2">
+                                Comments:</label>
+                        </div>
+                        <div class="row">
+                            <button id="btnAddDetailCmnts" class="btn btn-primary" style="margin-bottom: 15px;
+                                margin-left: 15px">
+                                Add Comment</button>
+                            <!-- <textarea id="notes" rows="20" cols="100%" class="col-sm-7 col-md-9" style="margin-left:
+    15px; margin-bottom: 15px"></textarea>-->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="tblDetailComments" class="table table-striped table-bordered table-hover
+    table-condensed ">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="history" class="tab-pane fade">
+                        <div class="row">
+                            &nbsp;
+                            <div class="form-group col-sm-9 col-md-10">
+                                <!-- <p> This is the history details
+    page.</p>-->
+                                <br />
+                                <table id="tblchangehistory" class="table table-striped table-bordered
+    table-hover table-condensed ">
+                                    <thead>
+                                        <tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row" id="divHistoryRecord" hidden>
+                            <hr />
+                            <div class="row" style="margin-bottom: 25px">
+                                <div class="col-sm-2">
+                                    Add History Record</div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-2 ">
+                                    <label for="selSource">
+                                        Source</label>
+                                    <input type="text" class="form-control" id="selSource" value="Change Record" disabled />
+                                </div>
+                                <div class="form-group col-sm-2 ">
+                                    <label for="selField">
+                                        Field</label>
+                                    <input class="form-control" id="selField" value="Change Status" disabled />
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="changeDate" class="control-label">
+                                        Change Date:</label>
+                                    <div id="Div1" class="input-group">
+                                        <input type="text" id="changeDate" class="form-control" />
+                                        <span id="changeDateCal" class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+                                        </span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group
+    col-sm-2 ">
+                                    <label for="selPrevious">
+                                        Previous</label>
+                                    <select class="form-control" id="selPrevious">
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-2 ">
+                                    <label for="selNew">
+                                        New</label>
+                                    <select class="form-control" id="selNew">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="divAddHistory" hidden>
+                            <div class="col-sm-2 col-sm-offset-8">
+                                <button id="btnAddHistory" class="btn btn-primary btnmenu">
+                                    Add</button></div>
+                        </div>
+                    </div>
+                    <div id="cmnts" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="tblComments" class="table table-striped table-bordered table-hover table-condensed">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end change record tabs-->
+        </div>
+    </div>
+    <!--end change record tabs page -->
+    <!--end main container -->
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/spin.js"></script>
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.datetimepicker.full.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.range_dates.js"></script>
+    <script type="text/javascript" src="../js/bootbox.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="../js/changeapp.js"></script>
+</body>
+</html>

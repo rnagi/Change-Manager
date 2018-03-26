@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/jquery-ui.min.css">
+    <link rel="Stylesheet" type="text/css" href="../css/itops.css" />
+    <title>Manage Change Request</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--logo-->
+        <div class="row" style="border-bottom: 1px solid #00357E">
+            <div class="col-sm-10" style="background-color: #C0DBFF; height: 100px">
+                &nbsp;
+            </div>
+            <div class="col-sm-2" style="background-color: #C0DBFF">
+                <img alt="logo" width="200px" height="100px" src="../images/AAAlogo.jpg" /></div>
+        </div>
+        <div class="row">
+         <div class="col-sm-2">
+                <a href="itops.html">
+                    <h5>
+                        Home&nbsp;<span class="glyphicon glyphicon-home"></span></h5>
+                </a>
+            </div>
+            <div class="col-sm-offset-5">
+                <ul class="nav nav-pills">
+                   
+                    <li id="admin"><a href="changeadmin.html">Change Administration</a></li>
+                    <li id="request"><a href="changerequest.html">Change Request</a></li>
+                    <li id="record"><a href="changerecord.html">Change Record</a></li>
+                     <li id="mngrequest"><a href="managerequest.html">Manage Requests</a></li>
+                </ul>
+            </div>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="form-group form-inline col-sm-6">
+                <h3>
+                    <label for="reqnumber" class="form-label">
+                        Manage Change Request #:</label>
+                    <input id="reqnumber" type="text" disabled class="form-control " /></h3>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="changerequest.html">View Request Details</a> </li>
+                    <li class="list-group-item"><a href="#">View Assessment Details</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="shortdesc">
+                            Name / Short Description:</label>
+                        <input type="text" id="shortdesc" class="form-control" />
+                    </div>
+                    <div class="form-group form-inline col-sm-3 col-sm-offset-3">
+                        <label for="crdate" class="control-label">
+                            Create Date:</label>
+                        <input type="text" id="crdate" class="form-control" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label for="category">
+                            Category:</label>
+                        <select class="form-control" id="Select3">
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="status">
+                            Status:</label>
+                        <select class="form-control" id="Select4">
+                        </select>
+                    </div>
+                    <div class="form-group form-inline col-sm-3 col-sm-offset-3">
+                        <label for="crby" class="control-label">
+                            Created By:&nbsp;</label>
+                        <input type="text" id="Text1" class="form-control" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label for="busimpact" class="control-label">
+                            Business Impact:</label>
+                        <select class="form-control" id="busimpact">
+                        </select>
+                    </div>
+                    <div class="form-group  col-sm-3 ">
+                        <label for="source" class="control-label">
+                            Service Impact:</label>
+                        <select class="form-control" id="source">
+                        </select>
+                    </div>
+                    <div class="col-sm-3 form-group form-inline col-sm-offset-3 ">
+                        <button id="btnSave" class="btn btn-primary  ">
+                            Save</button>
+                        <button id="btnExit" class="btn btn-primary ">
+                            Exit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="description" class="col-sm-3 control-label">
+                        Description:</label>
+                    <label for="buscase" class="col-sm-3 control-label" style="margin-left: 15px;">
+                        Business Case:</label>
+                </div>
+                <div class="row">
+                    <textarea id="description" rows="5" cols="100%" class="col-xs-10 col-sm-3" style="margin-left: 15px;
+                        margin-bottom: 15px"></textarea>
+                    <textarea id="buscase" rows="5" cols="100%" class="col-xs-10 col-sm-3 " style="margin-left: 15px;
+                        margin-bottom: 15px"></textarea>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label for="risk">
+                            Risk:</label>
+                        <select class="form-control" id="risk">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label for="priority">
+                            Priority:</label>
+                        <select class="form-control" id="priority">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="description" class="col-sm-3">
+                        Non-Implementation Effects:</label>
+                </div>
+                <div class="row">
+                    <textarea id="nonimplement" rows="5" cols="100%" class="col-xs-10 col-sm-6" style="margin-left: 15px;
+                        margin-bottom: 15px"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/managerequest.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+            $("#requestbydatepicker").datepicker();
+        });
+    </script>
+</body>
+</html>

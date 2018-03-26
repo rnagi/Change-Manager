@@ -1,0 +1,7 @@
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\bin\ChangeManagement.dll
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\bin\ChangeManagement.pdb
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\bin\EntityFramework.dll
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\bin\EntityFramework.xml
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\ChangeManagement.dll
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\ChangeManagement.pdb
+C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\ChangeManagement.csprojResolveAssemblyReference.cache

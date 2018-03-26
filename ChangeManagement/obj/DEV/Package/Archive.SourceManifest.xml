@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <contentPath path="C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\Package\PackageTmp" />
+  <setAcl path="C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Projects\nyaaa_wcnysvn\Web Applications\ChangeManagement\ChangeManagement\obj\DEV\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

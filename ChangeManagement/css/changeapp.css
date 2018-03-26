@@ -1,0 +1,289 @@
+﻿label
+{
+    display:block
+ }
+
+.margin-btm-c
+{
+    margin-bottom: 15px;
+}
+
+.center-modal-header
+{
+  text-align:center
+}
+
+.warning
+{
+   background: Yellow; 
+}
+
+.bold
+{
+    font-weight:bold;
+}
+
+.grid {
+    width: 500px;
+    height: 250px;
+  }
+
+#overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    z-index: 10000;
+}
+
+.custom  {
+   /* width:50%;
+    margin:0 auto;
+    /*add what you want here*/
+    margin-left: 15px;
+    text-align: center;
+    font-weight: bolder;
+     
+}
+
+.redBorder
+{
+    border:1 px solid red;
+}
+
+.modalSize
+{
+    width:50% ;
+}
+
+.nav-title
+{
+    color:#337ab7;
+    padding-left: 50px;
+  /*  text-decoration: underline; */
+    font-size:large;
+}
+
+.title
+{
+    padding-left: 0px;  
+    padding-right: 0px; 
+    height: 60px; 
+    background-color:#337ab7;    
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img
+{
+   width: 800px;
+   height: 600px;
+   margin: auto;
+}
+   
+/* unvisited link */
+.rptlink{
+    font-size:medium;
+    font-weight:bolder;
+}
+
+/* visited link 
+a:visited {
+    color: #00FF00;
+}
+
+/* mouse over link 
+a:hover {
+    color: #FF00FF;
+}
+
+/* selected link 
+a:active {
+     color: #0000FF;
+} 
+
+*/
+
+/*set tooltip background color */
+.blue-tooltip + .tooltip > .tooltip-inner 
+{
+ background-color: #337ab7 ;
+ text-align: left;
+ 
+}
+
+.blue-tooltip + .tooltip > .tooltip-arrow  
+{
+ border-bottom-color:#337ab7 ;   
+}
+
+/*set opacity of tooltip */
+.tooltip.in {
+  opacity: 1;
+  filter: alpha(opacity=100); /*ie 8 and earlier*/
+}
+ 
+.jumbotron {
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  color: white;
+  background-color: #337ab7;
+  height: 50px;
+  
+}
+
+/*Change glyphicon-info icon color*/
+.glyphicon-info-sign
+{
+    color: #337ab7;
+}
+
+/*Center the navigation bar */
+.nav-center
+{
+    margin-top: 3%;
+    padding-left: 15px;
+}
+/*Center the main application */
+.center-screen
+{
+    margin-top: 10%;
+    margin-left: 15%;
+}
+/*Remove classes when screen is mobile */
+@media (max-width: 768px)
+{
+    .nav-center
+    {
+        margin-top: auto;
+    }
+    .center-screen
+    {
+        margin-top: auto;
+        margin-left: auto;
+    }
+
+}
+
+.ui-datepicker
+{
+    position: relative;
+    z-index: 10000 !important;
+}
+
+#satdiv, #cmdiv, #pbdiv, #setdiv, #rptdiv, #svtldiv
+{
+    font-size: xx-large;
+}
+.btnmenu
+{
+    margin: 10px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.lbl_riskcalc_low
+{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: Green;
+}
+
+.lbl_riskcalc_med
+{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: Yellow;
+}
+
+.lbl_riskcalc_high
+{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: red;
+}
+
+.btn-exit
+{
+    margin-top: 90%;
+    border-radius: 15px;
+    width: 100%;
+}
+
+body
+{
+    background-color: #F0F8FF;
+}
+
+.btn100px
+{
+    width: 100px;
+}
+
+.xs-button
+{
+    margin-bottom: 5px;
+}
+
+.checkcenter
+{
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Fix a scroll issue in ie 9 */
+div.dataTables_scrollBody
+{
+    min-height: 0%;
+}
+
+
+/*a:link {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #9B30FF;
+}
+
+a:hover {
+    text-decoration: none;
+     
+}
+
+a:active {
+    text-decoration: underline;
+}
+*/
+
+/* remove navigation on mobile and tablets
+@media (max-width: 768px) { 
+    .nav{
+        display:none;
+    }
+}*/
+
+/* cener tabs
+.nav-center {  
+  text-align: center;
+  ul.nav {
+    display: inline-block;
+    li {
+      display: inline
+      a {
+        float: left
+      }
+    }
+  }
+}
+ */
+

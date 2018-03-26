@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/jquery-ui.min.css">
+    <link rel="Stylesheet" type="text/css" href="../css/itops.css" />
+    <title>Add Change Record</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--logo-->
+        <div class="row" style="border-bottom: 1px solid #00357E">
+            <div class="col-sm-10" style="background-color: #C0DBFF; height: 100px">
+                &nbsp;
+            </div>
+            <div class="col-sm-2" style="background-color: #C0DBFF">
+                <img alt="logo" width="200px" height="100px" src="../images/AAAlogo.jpg" /></div>
+        </div>
+        <div class="row">
+         <div class="col-sm-2">
+                <a href="itops.html">
+                    <h5>
+                        Home&nbsp;<span class="glyphicon glyphicon-home"></span></h5>
+                </a>
+            </div>
+            <div class="col-sm-offset-5">
+                <ul class="nav nav-pills">
+                     
+                    <li id="admin"><a href="changeadmin.html">Change Administration</a></li>
+                    <li id="request"><a href="changerequest.html">Change Request</a></li>
+                    <li id="record"><a href="changerecord.html">Change Record</a></li>
+                    <li id-"mngrequest"><a href="managerequest.html">Manage Requests</a></li>
+                </ul>
+            </div>
+            <hr />
+        </div>
+        <div class="row">
+            <h3>
+                <label class="col-sm-10" style="margin-bottom: 50px">
+                   Add Change Record #:</label></h3>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="shortdesc">
+                    Name / Short Description:</label>
+                <input type="text" id="shortdesc" class="form-control" />
+            </div>
+            <div class="form-group form-inline col-sm-3 col-sm-offset-3" >
+                <label for="crdate" class="control-label" >
+                    Create Date:</label>
+                <input type="text" id="crdate" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group form-inline col-sm-3">
+                <label for="requestedby" class="control-label">
+                    Requested By:</label>
+                <select class="form-control" style="width: 100%" id="requestedby">
+                </select>
+            </div>
+            <div class="form-group form-inline col-sm-3">
+                <label for="component" class="control-label">
+                    Component:</label>
+                <input type="text" class="form-control" style="width: 100%" id="component" />
+            </div>
+            <div class="form-group form-inline col-sm-3" style="padding-top: 20px">
+                <button class="btn btn-primary glyphicon glyphicon-ok xs-button ">
+                </button>
+                <button class="btn btn-primary xs-button ">
+                    Search</button>
+            </div>
+            <div class="form-group form-inline col-sm-3" style="margin:0px">
+                <label for="crby" class="control-label">
+                    Created By:&nbsp;</label>
+                <input type="text" id="crby" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <label for="category">
+                    Category:</label>
+                <select class="form-control" id="category">
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="status">
+                    Approval Status:</label>
+                <select class="form-control" id="status">
+                </select>
+            </div>
+            <div class="form-group form-inline col-sm-3 col-sm-offset-3">
+                <label for="source" class="control-label" >
+                    Source:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <select class="form-control" id="source" style="width:180px" >
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <label for="risk">
+                    Risk:</label>
+                <select class="form-control" id="risk">
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="type">
+                    Type:</label>
+                <select class="form-control" id="type">
+                </select>
+            </div>
+            <div class="form-group  form-inline col-sm-3 col-sm-offset-3 ">
+                <label for="sourceid" class="control-label" style="margin-right:15px">
+                    Source Id:</label>
+                <input type="text" class="form-control" id="sourceid"  />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <label for="priority">
+                    Priority:</label>
+                <select class="form-control" id="priority">
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="state">
+                    State:</label>
+                <select class="form-control" id="state">
+                </select>
+            </div>
+             <div class="col-sm-2 col-sm-offset-3  form-group">
+                <button id="btnSave" class="btn btn-primary xs-button">
+                    Save</button>
+                <button class="btn btn-primary xs-button">
+                    Exit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <label for="impact">
+                    Change Impact:</label>
+                <select class="form-control" id="impact">
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="assignedto">
+                    Assigned To:</label>
+                <select class="form-control" id="assignedto">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label for="description" class="col-sm-1">
+                Description:</label>
+        </div>
+        <div class="row">
+            <textarea id="description" rows="5" cols="100%" class="col-xs-10 col-sm-8  " style="margin-left: 15px;
+                margin-bottom: 15px"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-sm-8" style="border: 1px solid black; margin-left: 15px; margin-bottom: 15px">
+                <div class="row">
+                    <h3 class="col-sm-8">
+                        Notes</h3>
+                </div>
+                <div class="row">
+                    <span class="col-sm-8  col-xs-6"><b>Comments &nbsp; (customer visible)</b></span>
+                </div>
+                <div class="row">
+                    <textarea id="comments" rows="5" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                        margin-bottom: 15px;"></textarea>
+                </div>
+                <div class="row">
+                    <p class="col-sm-8">
+                        <b>Work Notes</b></p>
+                </div>
+                <div class="row">
+                    <textarea id="worknotes" rows="5" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                        margin-bottom: 15px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8" style="border: 1px solid black; margin-left: 15px; margin-bottom: 15px">
+                <div class="row">
+                    <h3 class="col-sm-8">
+                        Schedule</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="form-inline">
+                        <div class="form-group col-sm-4">
+                            <label for="startdatepicker" class="control-label">
+                                Planned Start</label>
+                            <div class="input-group" style="margin-bottom: 10px; margin-right: 5px">
+                                <input type="text" id="startdatepicker" class="form-control" />
+                                <span class="input-group-addon"><span id="startdateicon" class="glyphicon glyphicon-calendar">
+                                </span></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="workstartdatepicker" class="control-label">
+                                Work Start</label>
+                            <div class="input-group" style="margin-bottom: 10px; margin-right: 5px">
+                                <input type="text" id="workstartdatepicker" class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="requestbydatepicker" class="control-label">
+                                Request By Date</label>
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <input type="text" id="requestbydatepicker" class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        </form>
+                        <form class="form-inline">
+                        <div class="form-group col-sm-4 ">
+                            <label for="enddatepicker" class="control-label">
+                                Planned End</label>
+                            <div class="input-group" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px">
+                                <input type="text" id="enddatepicker" class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="wordenddatepicker " class="control-label">
+                                Work End</label>
+                            <div class="input-group" style="margin-bottom: 10px; margin-left: 5px">
+                                <input type="text" id="workenddatepicker" class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8" style="border: 1px solid black; margin-left: 15px; margin-bottom: 15px">
+                    <div class="row">
+                        <h3 class="col-sm-8">
+                            Planning</h3>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-8">
+                            <b>Change Plan</b></p>
+                    </div>
+                    <div class="row">
+                        <textarea id="changeplan" rows="5" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                            margin-bottom: 15px;"></textarea>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-8">
+                            <b>Backout Plan</b></p>
+                    </div>
+                    <div class="row">
+                        <textarea id="backoutplan" rows="5" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                            margin-bottom: 15px;"></textarea>
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-8">
+                            <b>Test Plan</b></p>
+                    </div>
+                    <div class="row">
+                        <textarea id="testplan" rows="5" cols="100%" class="col-xs-10 col-sm-11" style="margin-left: 15px;
+                            margin-bottom: 15px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8" style="border: 1px solid black; margin-left: 15px; margin-bottom: 15px">
+                    <div class="row">
+                        <h3 class="col-sm-8">
+                            Tasks</h3>
+                    </div>
+                    <div class="row">
+                        <form class="form-inline">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <textarea id="tasks" rows="10" cols="100%" class="col-xs-10 col-sm-10" style="margin-bottom: 15px;"
+                                    disabled></textarea>
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <button class="btn btn-primary xs-button">
+                                    Add</button>
+                                <button class="btn btn-primary xs-button">
+                                    Update</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/changerecord.js"></script>
+    <script type="text/javascript">
+        $(function ()
+        {
+            $("#startdatepicker").datepicker();
+            $("#workstartdatepicker").datepicker();
+            $("#requestbydatepicker").datepicker();
+            $("#enddatepicker").datepicker();
+            $("#workenddatepicker").datepicker();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeManagement", "ChangeManagement\ChangeManagement.csproj", "{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DEV|Any CPU = DEV|Any CPU
+		PROD|Any CPU = PROD|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.DEV|Any CPU.ActiveCfg = DEV|Any CPU
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.DEV|Any CPU.Build.0 = DEV|Any CPU
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{CA93358E-2A39-4DB6-8A7E-634E3A3888AA}.PROD|Any CPU.Build.0 = PROD|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
